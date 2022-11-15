@@ -13,6 +13,18 @@
         android:theme="@style/Theme.EasyGetIn"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReceiptActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ParkiranActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_home"
             android:exported="false">
             <meta-data
