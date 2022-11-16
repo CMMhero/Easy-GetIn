@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "906640461374",
+    "project_id": "easy-getin",
+    "storage_bucket": "easy-getin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906640461374:android:f095e7908f9363cbbdcb6f",
+        "android_client_info": {
+          "package_name": "id.ac.umn.easygetin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906640461374-5ms9t5le3v9rmrfis3kan32hmihmj0ug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.umn.easygetin",
+            "certificate_hash": "10786a11dab3082378c41f6e6132636062f2ed96"
+          }
+        },
+        {
+          "client_id": "906640461374-81b7ijv39v559eoedgm1vbqb6m58v2it.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3taCAGjI-rp-N0ypupO53C0sCH_V0RlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906640461374-81b7ijv39v559eoedgm1vbqb6m58v2it.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
