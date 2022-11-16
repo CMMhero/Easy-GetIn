@@ -44,6 +44,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/username"
+        android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,6 +60,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,6 +75,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,10 +86,11 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/registerPassword2EditText2"
+        android:id="@+id/RegisterConfirmPasswordEditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/confirmPassword"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
