@@ -70,7 +70,7 @@ public class activity_login extends AppCompatActivity {
                     startActivity(new Intent(activity_login.this, activity_home.class));
                     finish();
                 } else {
-                    Toast.makeText(activity_login.this, "User not registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity_login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

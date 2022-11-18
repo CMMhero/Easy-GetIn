@@ -4,7 +4,19 @@ public class Location {
     double latitude, longitude, price;
     String location, mapsUrl, name, photoUrl;
 
-    public Location() {
+    public Location() { }
+//    public Location(String name, String location, String mapsUrl, String photoUrl, double latitude, double longitude, double price) {
+//        this.name = name;
+//        this.location = location;
+//        this.mapsUrl = mapsUrl;
+//        this.photoUrl = photoUrl;
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//        this.price = price;
+//    }
+    public Location(String name, String location) {
+        this.name = name;
+        this.location = location;
     }
 
     public double getLatitude() {
