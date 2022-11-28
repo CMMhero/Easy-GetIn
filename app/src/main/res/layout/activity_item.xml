@@ -7,25 +7,48 @@
     android:orientation="vertical"
     tools:context=".ItemActivity">
 
+    <ImageButton
+        android:id="@+id/LoginBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/logo_description"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="back"
+        app:srcCompat="@drawable/login_back_logo" />
+
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ItemGambar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/Item_title"
+        android:id="@+id/ItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Judul"
+        android:text="Name"
         android:gravity="center"
         android:textSize="30sp"
         android:textColor="@color/black"
         android:layout_marginTop="30dp"/>
 
     <TextView
-        android:id="@+id/detail"
+        android:id="@+id/ItemLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/ItemDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Harga Parkir /jam:"
@@ -34,7 +57,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="30dp"/>
     <TextView
-        android:id="@+id/satu_jam_pertama"
+        android:id="@+id/ItemJamPertama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Satu jam pertama: Rp 5000"
@@ -43,7 +66,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="30dp"/>
     <TextView
-        android:id="@+id/satu_jam_berikutnya"
+        android:id="@+id/ItemJamBerikutnya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Satu jam berikutnya: Rp 3000"
@@ -58,8 +81,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cornerRadius="20dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:text="Pesan"
+        android:onClick="pesan"
         android:textColor="@color/black"/>
 
 </LinearLayout>

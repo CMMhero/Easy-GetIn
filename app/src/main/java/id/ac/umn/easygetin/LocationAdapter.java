@@ -66,7 +66,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             String name = mDaftarLocation.get(mPosition).getName();
             String location = mDaftarLocation.get(mPosition).getLocation();
 
-            Toast.makeText(view.getContext(), name + " dipilih", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(view.getContext(), name + " dipilih", Toast.LENGTH_SHORT).show();
+            Intent intentItem = new Intent(view.getContext(), ItemActivity.class);
+            intentItem.putExtra("name", name);
+            intentItem.putExtra("location", location);
+            view.getContext().startActivity(intentItem);
         }
     }
 }
