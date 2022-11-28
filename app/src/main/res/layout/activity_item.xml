@@ -4,12 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ItemActivity">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginTop="80dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/Item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Judul"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Harga Parkir /jam:"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/satu_jam_pertama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Satu jam pertama: Rp 5000"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/satu_jam_berikutnya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Satu jam berikutnya: Rp 3000"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/Pesan"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cornerRadius="20dp"
+        android:layout_marginTop="120dp"
+        android:text="Pesan"
+        android:textColor="@color/black"/>
+
 </LinearLayout>
