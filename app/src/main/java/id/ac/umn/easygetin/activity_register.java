@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class activity_register extends AppCompatActivity {
 
     EditText usernameET, emailET, passwordET, confirmPasswordET;
+    Button confirmButton;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,8 @@ public class activity_register extends AppCompatActivity {
         passwordET = findViewById(R.id.RegisterPasswordEditText);
         confirmPasswordET = findViewById(R.id.RegisterConfirmPasswordEditText);
         ImageButton backButton = findViewById(R.id.RegisterBackButton);
-        Button confirmButton = findViewById(R.id.RegisterConfirmButton);
+        confirmButton = findViewById(R.id.RegisterConfirmButton);
+        progressBar = findViewById(R.id.progressBar);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +71,8 @@ public class activity_register extends AppCompatActivity {
     }
 
     void registerAccount(String username, String email, String password) {
+        showProgressBar(true);
+
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(activity_register.this,
                 new OnCompleteListener<AuthResult>() {
@@ -82,6 +88,7 @@ public class activity_register extends AppCompatActivity {
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            showProgressBar(false);
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(activity_register.this, "Successfully created account", Toast.LENGTH_SHORT).show();
                                             } else {
@@ -97,6 +104,16 @@ public class activity_register extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    void showProgressBar(boolean loading) {
+        if (loading) {
+            progressBar.setVisibility(View.VISIBLE);
+            confirmButton.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+            confirmButton.setVisibility(View.GONE);
+        }
     }
 
     String validateRegister(String username, String email, String password, String confirmPassword) {

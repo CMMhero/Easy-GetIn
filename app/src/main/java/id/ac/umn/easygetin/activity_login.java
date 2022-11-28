@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class activity_login extends AppCompatActivity {
 
     EditText emailET, passwordET;
+    ProgressBar progressBar;
+    Button confirmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,8 @@ public class activity_login extends AppCompatActivity {
         emailET = findViewById(R.id.LoginEmailEditText);
         passwordET = findViewById(R.id.LoginPasswordEditText);
         ImageButton backButton = findViewById(R.id.LoginBackButton);
-        Button confirmButton = findViewById(R.id.LoginConfirmButton);
+        confirmButton = findViewById(R.id.LoginConfirmButton);
+        progressBar = findViewById(R.id.progressBar);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +66,13 @@ public class activity_login extends AppCompatActivity {
     }
 
     void loginAccount(String email, String password) {
+        showProgressBar(true);
+
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                showProgressBar(false);
                 if (task.isSuccessful()) {
                     startActivity(new Intent(activity_login.this, activity_home.class));
                     finish();
@@ -74,6 +81,16 @@ public class activity_login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    void showProgressBar(boolean loading) {
+        if (loading) {
+            progressBar.setVisibility(View.VISIBLE);
+            confirmButton.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+            confirmButton.setVisibility(View.GONE);
+        }
     }
 
     String validateLogin(String email, String password) {
