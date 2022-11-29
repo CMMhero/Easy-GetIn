@@ -57,6 +57,8 @@ public class activity_home extends AppCompatActivity {
         toolbar = findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
 
+
+
         mDaftarLocation.add(new Location("Universitas Multimedia Nusantara", "Jl. Scientia Boulevard"));
         mDaftarLocation.add(new Location("Summarecon Mall Serpong", "Jl. Boulevard Raya"));
         mDaftarLocation.add(new Location("asdf", "Jl. Boulevard Raya"));
