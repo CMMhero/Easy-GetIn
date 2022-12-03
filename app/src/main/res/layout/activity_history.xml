@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PaymentActivity">
+    tools:context=".HistoryActivity">
 
     <include
         android:id="@+id/app_bar"
@@ -20,7 +20,6 @@
         tools:context=".activity_home">
 
     </LinearLayout>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/navBar"
