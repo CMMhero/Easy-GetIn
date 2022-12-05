@@ -1,5 +1,6 @@
 package id.ac.umn.easygetin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+
 public class ItemActivity extends AppCompatActivity {
 
     ImageView imageTV;
@@ -15,6 +21,8 @@ public class ItemActivity extends AppCompatActivity {
 
     private String name;
     private String location;
+    private int jamPertama;
+    private int jamBerikutnya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +37,13 @@ public class ItemActivity extends AppCompatActivity {
 
         name = getIntent().getExtras().getString("name");
         location = getIntent().getExtras().getString("location");
+        jamPertama = getIntent().getExtras().getInt("jamPertama");
+        jamBerikutnya = getIntent().getExtras().getInt("jamBerikutnya");
 
         nameTV.setText(name);
         locationTV.setText(location);
+        jamPertamaTV.setText((int) jamPertama);
+        jamBerikutnyaTV.setText((int) jamBerikutnya);
     }
 
     public void back(View view) {
@@ -39,7 +51,24 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     public void pesan(View view) {
-        Intent parkirIntent = new Intent(ItemActivity.this, ParkiranActivity.class);
-        startActivity(parkirIntent);
+        DocumentReference documentReference;
+        documentReference = Functions.getCollectionReferenceForOrders().document();
+
+        String nomorParkir = Functions.getRandomLetter() + Functions.getRandomNumber(1, 10);
+
+        Order order = new Order(false, Timestamp.now(), name, nomorParkir);
+        documentReference.set(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    Functions.showToast(ItemActivity.this, "Berhasil pesan");
+
+                    Intent parkirIntent = new Intent(ItemActivity.this, ParkiranActivity.class);
+                    startActivity(parkirIntent);
+                } else {
+                    Functions.showToast(ItemActivity.this, "Gagal memesan. Mohon coba lagi");
+                }
+            }
+        });
     }
 }

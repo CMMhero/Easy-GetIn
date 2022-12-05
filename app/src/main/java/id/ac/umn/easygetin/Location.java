@@ -1,7 +1,7 @@
 package id.ac.umn.easygetin;
 
 public class Location {
-    double latitude, longitude, price;
+    double latitude, longitude, jamPertama, jamBerikutnya;
     String location, mapsUrl, name, photoUrl;
 
     public Location() { }
@@ -35,12 +35,20 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public double getPrice() {
-        return price;
+    public double getJamPertama() {
+        return jamPertama;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setJamPertama(double jamPertama) {
+        this.jamPertama = jamPertama;
+    }
+
+    public double getJamBerikutnya() {
+        return jamBerikutnya;
+    }
+
+    public void setJamBerikutnya(double jamBerikutnya) {
+        this.jamBerikutnya = jamBerikutnya;
     }
 
     public String getLocation() {
