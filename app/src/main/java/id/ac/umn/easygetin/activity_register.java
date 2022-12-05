@@ -96,7 +96,7 @@ public class activity_register extends AppCompatActivity {
                                             }
                                         }
                                     });
-//                            firebaseAuth.getCurrentUser().sendEmailVerification();
+                            firebaseAuth.getCurrentUser().sendEmailVerification();
                             firebaseAuth.signOut();
                             finish();
                         } else {
