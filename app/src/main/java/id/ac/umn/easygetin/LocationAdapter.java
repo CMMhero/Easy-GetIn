@@ -13,64 +13,58 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
+public class LocationAdapter extends FirestoreRecyclerAdapter<Location, LocationAdapter.LocationViewHolder>{
+    Context context;
 
-    private final ArrayList<Location> mDaftarLocation;
-    private LayoutInflater mInflater;
+    public LocationAdapter(@NonNull FirestoreRecyclerOptions<Location> options, Context context) {
+        super(options);
+        this.context = context;
+    }
 
-    LocationAdapter(Context context, ArrayList<Location> daftarLocation) {
-        mInflater = LayoutInflater.from(context);
-        mDaftarLocation = daftarLocation;
+    @Override
+    protected void onBindViewHolder(@NonNull LocationViewHolder holder, int position, @NonNull Location model) {
+        holder.nameTV.setText(model.name);
+        holder.locationTV.setText(model.location);
+//        holder.jamPertamaTV.setText((int) model.jamPertama);
+//        holder.jamBerikutnyaTV.setText((int) model.jamBerikutnya);
+
+        holder.itemView.setOnClickListener((view -> {
+            Intent ItemItent = new Intent(context, ItemActivity.class);
+            ItemItent.putExtra("name", model.name);
+            ItemItent.putExtra("location", model.location);
+            ItemItent.putExtra("jamPertama", model.jamPertama);
+            ItemItent.putExtra("jamBerikutnya", model.jamBerikutnya);
+            view.getContext().startActivity(ItemItent);
+        }));
     }
 
     @NonNull
     @Override
-    public LocationAdapter.LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = mInflater.inflate(R.layout.location_item, parent, false);
-        return new LocationViewHolder(mItemView, this);
+    public LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.location_item, parent, false);
+        return new LocationViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull LocationAdapter.LocationViewHolder holder, int position) {
-        final Location mCurrent = mDaftarLocation.get(position);
-        holder.LocationNameItemView.setText(mCurrent.getName());
-        holder.LocationItemView.setText(mCurrent.getLocation());
-//        holder.LocationThumbnailView.setImageURI(Uri.parse(mCurrent.getThumbnail()));
-    }
+    class LocationViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public int getItemCount() {
-        return mDaftarLocation.size();
-    }
+        TextView nameTV, locationTV;
+        ImageView imageIV;
 
-    class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView LocationNameItemView;
-        public final TextView LocationItemView;
-        final LocationAdapter mAdapter;
-
-        public LocationViewHolder(@NonNull View itemView, LocationAdapter adapter) {
+        public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
-            LocationNameItemView = itemView.findViewById(R.id.locationNameTextView);
-            LocationItemView = itemView.findViewById(R.id.locationLocationTextView);
-            this.mAdapter = adapter;
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            int mPosition = getLayoutPosition();
-            String name = mDaftarLocation.get(mPosition).getName();
-            String location = mDaftarLocation.get(mPosition).getLocation();
-
-//            Toast.makeText(view.getContext(), name + " dipilih", Toast.LENGTH_SHORT).show();
-            Intent intentItem = new Intent(view.getContext(), ItemActivity.class);
-            intentItem.putExtra("name", name);
-            intentItem.putExtra("location", location);
-            view.getContext().startActivity(intentItem);
+            nameTV = itemView.findViewById(R.id.locationNameTextView);
+            locationTV = itemView.findViewById(R.id.locationLocationTextView);
+//            jamPertamaTV = itemView.findViewById(R.id.ItemJamPertama);
+//            jamBerikutnyaTV = itemView.findViewById(R.id.ItemJamBerikutnya);
+//            imageIV = itemView.findViewById(R.id.ItemGambar);
         }
     }
 }
