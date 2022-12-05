@@ -67,12 +67,12 @@ public class ItemActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     Functions.showToast(ItemActivity.this, "Berhasil pesan");
 
-                    Intent parkirIntent = new Intent(ItemActivity.this, ParkiranActivity.class);
-                    parkirIntent.putExtra("timestampFormat", timestampFormat);
-                    parkirIntent.putExtra("name", name);
-                    parkirIntent.putExtra("nomorParkir", nomorParkir);
-                    parkirIntent.putExtra("code", code);
-                    startActivity(parkirIntent);
+                    Intent orderIntent = new Intent(ItemActivity.this, OrderActivity.class);
+                    orderIntent.putExtra("timestampFormat", timestampFormat);
+                    orderIntent.putExtra("name", name);
+                    orderIntent.putExtra("nomorParkir", nomorParkir);
+                    orderIntent.putExtra("code", code);
+                    startActivity(orderIntent);
                 } else {
                     Functions.showToast(ItemActivity.this, "Gagal memesan. Mohon coba lagi");
                 }
