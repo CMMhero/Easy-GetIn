@@ -33,7 +33,7 @@
             android:name=".ItemActivity"
             android:exported="false" />
         <activity
-            android:name=".ParkiranActivity"
+            android:name=".OrderActivity"
             android:exported="false" />
         <activity
             android:name=".activity_home"

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:backgroundTint="@color/yellow"
+    app:cardCornerRadius="16dp"
+    app:contentPadding="12dp"
+    android:layout_marginBottom="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/NameHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/NoParkirHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Parkir: "
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/JamMasukHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam Masuk: "
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/JamKeluarHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam Keluar: "
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/CodeHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CODE: "
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

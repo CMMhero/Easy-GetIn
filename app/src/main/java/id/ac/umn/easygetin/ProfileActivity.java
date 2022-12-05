@@ -92,6 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         BottomNavigationView navigation = findViewById(R.id.navBar);
+        navigation.setSelectedItemId(R.id.nav_profile);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

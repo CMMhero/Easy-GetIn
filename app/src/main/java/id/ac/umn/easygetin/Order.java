@@ -5,10 +5,10 @@ import com.google.firebase.Timestamp;
 public class Order {
     Boolean finished;
     Timestamp start, end;
-    String locationName, nomorParkir;
-    int code;
+    String locationName, nomorParkir, code;
 
-    public Order(Boolean finished, Timestamp start, String locationName, String nomorParkir, int code) {
+    public Order() {}
+    public Order(Boolean finished, Timestamp start, String locationName, String nomorParkir, String code) {
         this.finished = finished;
         this.start = start;
         this.locationName = locationName;
@@ -54,5 +54,13 @@ public class Order {
 
     public void setNomorParkir(String nomorParkir) {
         this.nomorParkir = nomorParkir;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -5,12 +5,12 @@
       <map>
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2825" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2825" />
-        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_history.xml" value="0.1" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_history.xml" value="0.22" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_home.xml" value="0.29438405797101447" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_item.xml" value="0.25" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_login.xml" value="0.3432971014492754" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_order.xml" value="0.1" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_order.xml" value="0.33" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_parkiran.xml" value="0.3509963768115942" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_payment.xml" value="0.1" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_profile.xml" value="0.22" />
@@ -18,7 +18,9 @@
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_register.xml" value="0.3432971014492754" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_splash.xml" value="0.1767983789260385" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/app_toolbar.xml" value="0.13994565217391305" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/history_item.xml" value="0.33" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/location_item.xml" value="0.3283514492753623" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/order_item.xml" value="0.3115942028985507" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/menu/bottom_navbar.xml" value="0.36354166666666665" />
         <entry key="..\:/FTI/IF634_IS534_MOBILE/WORKSPACE/Easy-GetIn/app/src/main/res/layout/activity_home.xml" value="0.35280797101449274" />
       </map>

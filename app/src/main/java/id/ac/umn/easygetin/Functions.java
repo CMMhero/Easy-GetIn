@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Functions {
 
@@ -52,11 +53,12 @@ public class Functions {
         return formattedDate;
     }
 
-    static int getCode() {
-        long timestamp = System.currentTimeMillis();
-        Date date = new Date(timestamp);
-        SecureRandom random = new SecureRandom(date.toString().getBytes());
-        int code = random.nextInt();
-        return code;
+    static String generateCode(int len) {
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+        return sb.toString();
     }
 }

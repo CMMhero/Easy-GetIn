@@ -26,8 +26,6 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 
 public class activity_home extends AppCompatActivity {
-    private ArrayList<Location> mDaftarLocation = new ArrayList<>();
-
     private RecyclerView mRecyclerView;
     private LocationAdapter mAdapter;
     private Toolbar toolbar;
@@ -67,6 +65,7 @@ public class activity_home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         BottomNavigationView navigation = findViewById(R.id.navBar);
+        navigation.setSelectedItemId(R.id.nav_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
