@@ -15,9 +15,6 @@
         android:theme="@style/Theme.EasyGetIn"
         tools:targetApi="31">
         <activity
-            android:name=".OrderActivity"
-            android:exported="false" />
-        <activity
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
