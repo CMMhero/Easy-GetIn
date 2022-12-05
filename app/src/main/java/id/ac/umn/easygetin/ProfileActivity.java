@@ -29,10 +29,10 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
-    TextView username, email;
-    Button save;
+    TextView usernameTV, emailTV;
+//    Button save;
     FirebaseUser user;
-    ImageView mobilImage;
+    ImageView mobilIV;
     StorageReference storageRef;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,10 +76,20 @@ public class ProfileActivity extends AppCompatActivity {
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
-        username = findViewById(R.id.usernameTV);
-        email = findViewById(R.id.emailTV);
-        mobilImage = findViewById(R.id.mobilImageView);
-        save = findViewById(R.id.save);
+        usernameTV = findViewById(R.id.usernameTV);
+        emailTV = findViewById(R.id.emailTV);
+        mobilIV = findViewById(R.id.mobilImageView);
+//        save = findViewById(R.id.save);
+
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+            usernameTV.setText(name);
+            emailTV.setText(email);
+        }
+
 
         BottomNavigationView navigation = findViewById(R.id.navBar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -101,6 +111,14 @@ public class ProfileActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
+
+    public void logout(View view) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+        Functions.showToast(ProfileActivity.this, "Successfully logged out");
+        startActivity(new Intent(ProfileActivity.this, activity_main.class));
+        finish();
+    }
 
     public void save(View view) {
     }

@@ -26,17 +26,27 @@
             app:contentPadding="12dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
+                android:padding="8dp"
                 tools:context=".ParkiranActivity">
+
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/NoParkir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nomor Parkir: "
+                    android:layout_marginTop="20dp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -45,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="Jam Masuk: "
                     android:textColor="@color/black"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/Code"
@@ -53,8 +63,18 @@
                     android:layout_height="wrap_content"
                     android:text="CODE: "
                     android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:text="Selesai"
+                    android:onClick="selesai"
+                />
 
             </LinearLayout>
 

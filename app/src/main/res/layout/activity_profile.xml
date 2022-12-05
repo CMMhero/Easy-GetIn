@@ -40,11 +40,11 @@
             app:srcCompat="@drawable/main_logo_vector" />
 
         <Button
-            android:id="@+id/save"
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="save"
-            android:text="Button" />
+            android:onClick="logout"
+            android:text="Logout" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -49,5 +50,13 @@ public class Functions {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String formattedDate = dateFormat.format(date);
         return formattedDate;
+    }
+
+    static int getCode() {
+        long timestamp = System.currentTimeMillis();
+        Date date = new Date(timestamp);
+        SecureRandom random = new SecureRandom(date.toString().getBytes());
+        int code = random.nextInt();
+        return code;
     }
 }

@@ -14,10 +14,6 @@ public class Location {
 //        this.longitude = longitude;
 //        this.price = price;
 //    }
-    public Location(String name, String location) {
-        this.name = name;
-        this.location = location;
-    }
 
     public double getLatitude() {
         return latitude;

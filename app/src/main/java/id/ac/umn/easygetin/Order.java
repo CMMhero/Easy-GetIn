@@ -6,12 +6,14 @@ public class Order {
     Boolean finished;
     Timestamp start, end;
     String locationName, nomorParkir;
+    int code;
 
-    public Order(Boolean finished, Timestamp start, String locationName, String nomorParkir) {
+    public Order(Boolean finished, Timestamp start, String locationName, String nomorParkir, int code) {
         this.finished = finished;
         this.start = start;
         this.locationName = locationName;
         this.nomorParkir = nomorParkir;
+        this.code = code;
     }
 
     public Boolean getFinished() {

@@ -42,8 +42,8 @@ public class ItemActivity extends AppCompatActivity {
 
         nameTV.setText(name);
         locationTV.setText(location);
-        jamPertamaTV.setText((int) jamPertama);
-        jamBerikutnyaTV.setText((int) jamBerikutnya);
+        jamPertamaTV.setText("Jam Pertama: " + jamPertama);
+        jamBerikutnyaTV.setText("Jam Berikutnya: " + jamBerikutnya);
     }
 
     public void back(View view) {
@@ -56,7 +56,11 @@ public class ItemActivity extends AppCompatActivity {
 
         String nomorParkir = Functions.getRandomLetter() + Functions.getRandomNumber(1, 10);
 
-        Order order = new Order(false, Timestamp.now(), name, nomorParkir);
+        Timestamp timestamp = Timestamp.now();
+        String timestampFormat = Functions.convertTimeToString(timestamp);
+        int code = Functions.getCode();
+
+        Order order = new Order(false, timestamp, name, nomorParkir, code);
         documentReference.set(order).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -64,6 +68,10 @@ public class ItemActivity extends AppCompatActivity {
                     Functions.showToast(ItemActivity.this, "Berhasil pesan");
 
                     Intent parkirIntent = new Intent(ItemActivity.this, ParkiranActivity.class);
+                    parkirIntent.putExtra("timestampFormat", timestampFormat);
+                    parkirIntent.putExtra("name", name);
+                    parkirIntent.putExtra("nomorParkir", nomorParkir);
+                    parkirIntent.putExtra("code", code);
                     startActivity(parkirIntent);
                 } else {
                     Functions.showToast(ItemActivity.this, "Gagal memesan. Mohon coba lagi");
