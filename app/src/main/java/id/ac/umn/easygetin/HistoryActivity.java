@@ -55,7 +55,7 @@ public class HistoryActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.nav_history);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", true);
+        Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", true).orderBy("end", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Order> options = new FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();
         mRecyclerView = findViewById(R.id.HistoryRecyclerView);
         mAdapter = new HistoryAdapter(options, this);

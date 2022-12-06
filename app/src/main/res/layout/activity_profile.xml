@@ -33,11 +33,23 @@
             android:textSize="16sp"
             android:text="@string/email" />
 
-        <ImageView
-            android:id="@+id/mobilImageView"
+<!--        <ImageView-->
+<!--            android:id="@+id/mobilImageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:srcCompat="@drawable/main_logo_vector" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/jenisMobil"/>-->
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/main_logo_vector" />
+            android:id="@+id/editDataMobil"
+            android:text="Tambah data mobil"
+            android:onClick="editData"
+        />
 
         <Button
             android:id="@+id/logout"

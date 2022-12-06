@@ -20,9 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -33,7 +30,6 @@ public class ProfileActivity extends AppCompatActivity {
 //    Button save;
     FirebaseUser user;
     ImageView mobilIV;
-    StorageReference storageRef;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -71,14 +67,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        storageRef = FirebaseStorage.getInstance().getReference();
 
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
         usernameTV = findViewById(R.id.usernameTV);
         emailTV = findViewById(R.id.emailTV);
-        mobilIV = findViewById(R.id.mobilImageView);
+//        mobilIV = findViewById(R.id.mobilImageView);
 //        save = findViewById(R.id.save);
 
         if (user != null) {
@@ -122,5 +117,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void save(View view) {
+    }
+
+    public void editData(View view) {
+        Intent editIntent = new Intent(ProfileActivity.this, EditActivity.class);
+        startActivity(editIntent);
     }
 }

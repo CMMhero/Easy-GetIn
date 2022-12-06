@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saveEditMobilBtn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/jenisMobilET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tipe Mobil"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/platNomorET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Plat Nomor"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/warnaMobilET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Warna Mobil"
+            android:inputType="text"
+            />
+
+<!--        <ImageView-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:id="@+id/fotoMobilIV"-->
+<!--            />-->
+
+        <Button
+            android:id="@+id/fotoMobilBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ambil Foto Mobil" />
+
+        <Button
+            android:id="@+id/saveMobilBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="saveData"
+            android:text="Save" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_navbar" />
+
+</LinearLayout>

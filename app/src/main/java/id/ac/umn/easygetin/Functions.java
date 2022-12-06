@@ -46,6 +46,12 @@ public class Functions {
                 .document(user.getUid()).collection("my_order");
     }
 
+    static CollectionReference getCollectionReferenceForVehicle(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return FirebaseFirestore.getInstance().collection("vehicle")
+                .document(user.getUid()).collection("my_vehicle");
+    }
+
     static String convertTimeToString(Timestamp timestamp) {
         Date date = timestamp.toDate();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

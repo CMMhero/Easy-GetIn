@@ -5,17 +5,14 @@ public class Vehicle {
     String platNomor;
     String warna;
     String jenis;
-    String nama;
 
     public Vehicle() {
     }
 
-    public Vehicle(String nama, String platNomor, String warna, String jenis, String photo) {
-        this.nama = nama;
+    public Vehicle(String platNomor, String warna, String jenis) {
         this.platNomor = platNomor;
         this.warna = warna;
         this.jenis = jenis;
-        this.photo = photo;
     }
 
     public String getPhoto() {
@@ -48,13 +45,5 @@ public class Vehicle {
 
     public void setJenis(String jenis) {
         this.jenis = jenis;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 }
