@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:text="@string/username" />
 
         <TextView
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:textColor="@color/black"
             android:text="@string/email" />
 
 <!--        <ImageView-->
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editDataMobil"
             android:text="Tambah data mobil"
+            android:textColor="@color/black"
             android:onClick="editData"
         />
 
@@ -56,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="logout"
+            android:textColor="@color/black"
             android:text="Logout" />
     </LinearLayout>
 

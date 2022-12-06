@@ -59,8 +59,14 @@ public class Functions {
         return formattedDate;
     }
 
+    static long covertTimeToTimestamp(Timestamp timestamp) {
+        Date date = timestamp.toDate();
+        long time = date.getTime();
+        return time;
+    }
+
     static String generateCode(int len) {
-        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&";
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random rnd = new Random();
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++)

@@ -72,7 +72,7 @@ public class OrderActivity extends AppCompatActivity {
 //        jamMasukTV.setText("Jam Masuk: " + timestampFormat);
 //        codeTV.setText("CODE:" + code);
 
-        Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", false);
+        Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", false).orderBy("start", Query.Direction.DESCENDING);;
         FirestoreRecyclerOptions<Order> options = new FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();
         mRecyclerView = findViewById(R.id.OrderRecyclerView);
         mAdapter = new OrderAdapter(options, this);
