@@ -1,21 +1,41 @@
 package id.ac.umn.easygetin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,11 +44,19 @@ import com.google.firebase.firestore.Query;
 //import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class activity_home extends AppCompatActivity {
+public class activity_home extends AppCompatActivity implements OnMapReadyCallback {
     private RecyclerView mRecyclerView;
     private LocationAdapter mAdapter;
     private Toolbar toolbar;
+
+    GoogleMap gMap;
+    LatLng latlng;
+    FrameLayout maps;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    private final static int REQUEST_CODE = 100;
+    SupportMapFragment mapFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -68,6 +96,13 @@ public class activity_home extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.nav_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        maps = findViewById(R.id.maps);
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
+        mapFragment.getMapAsync(this);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        getLastLocation();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -90,13 +125,6 @@ public class activity_home extends AppCompatActivity {
 
         toolbar = findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
-
-//        mDaftarLocation.add(new Location("Universitas Multimedia Nusantara", "Jl. Scientia Boulevard"));
-//        mDaftarLocation.add(new Location("Summarecon Mall Serpong", "Jl. Boulevard Raya"));
-//        mDaftarLocation.add(new Location("asdf", "Jl. Boulevard Raya"));
-//        mDaftarLocation.add(new Location("fda", "Jl. Boulevard Raya"));
-//        mDaftarLocation.add(new Location("were", "Jl. Boulevard Raya"));
-//        mDaftarLocation.add(new Location("aewrwe", "Jl. Boulevard Raya"));
 
         Query query = Functions.getCollectionReferenceForLocations();
         FirestoreRecyclerOptions<Location> options = new FirestoreRecyclerOptions.Builder<Location>().setQuery(query, Location.class).build();
@@ -122,5 +150,53 @@ public class activity_home extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void getLastLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<android.location.Location>() {
+                @Override
+                public void onSuccess(android.location.Location location) {
+                    if (location != null) {
+                        mapFragment.getMapAsync(new OnMapReadyCallback() {
+                            @Override
+                            public void onMapReady(@NonNull GoogleMap googleMap) {
+                                gMap = googleMap;
+                                latlng = new LatLng(location.getLatitude(), location.getLongitude());
+                                googleMap.addMarker(new MarkerOptions().position(latlng).title("Current Location"));
+                                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
+                            }
+                        });
+                    }
+                }
+            });
+        } else {
+            askPermission();
+        }
+    }
+
+    private void askPermission() {
+        ActivityCompat.requestPermissions(activity_home.this, new String[]
+                {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+            } else {
+                Functions.showToast(this, "Location Permission Requeired");
+            }
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        gMap = googleMap;
+
+//        gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
 }
