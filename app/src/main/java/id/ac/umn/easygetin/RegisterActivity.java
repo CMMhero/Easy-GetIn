@@ -3,7 +3,6 @@ package id.ac.umn.easygetin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -19,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class activity_register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     EditText usernameET, emailET, passwordET, confirmPasswordET;
     Button confirmButton;
@@ -63,7 +62,7 @@ public class activity_register extends AppCompatActivity {
 
         String error = validateRegister(username, email, password, confirmPassword);
         if (error.length() > 0) {
-            Toast.makeText(activity_register.this, error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -74,7 +73,7 @@ public class activity_register extends AppCompatActivity {
         showProgressBar(true);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(activity_register.this,
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -90,9 +89,9 @@ public class activity_register extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             showProgressBar(false);
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(activity_register.this, "Successfully created account", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(RegisterActivity.this, "Successfully created account", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                Toast.makeText(activity_register.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -100,7 +99,7 @@ public class activity_register extends AppCompatActivity {
                             firebaseAuth.signOut();
                             finish();
                         } else {
-                            Toast.makeText(activity_register.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

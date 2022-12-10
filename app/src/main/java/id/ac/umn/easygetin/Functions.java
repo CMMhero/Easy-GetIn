@@ -9,12 +9,15 @@ import androidx.annotation.RequiresApi;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.SecureRandom;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class Functions {
@@ -72,5 +75,12 @@ public class Functions {
         for (int i = 0; i < len; i++)
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         return sb.toString();
+    }
+
+    static String convertIntToCurrencyString(int number) {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+        currencyFormat.setMinimumFractionDigits(0);
+        String numberAsCurrency = currencyFormat.format(number);
+        return numberAsCurrency;
     }
 }

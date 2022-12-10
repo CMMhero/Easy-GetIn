@@ -13,11 +13,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="16dp"
         android:orientation="vertical"
-        tools:context=".activity_home">
+        tools:context=".HomeActivity">
 
     <ImageButton
         android:id="@+id/LoginBackButton"
@@ -97,12 +97,5 @@
         android:textColor="@color/black"/>
 
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:id="@+id/navBar"
-        android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navbar"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

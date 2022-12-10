@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class activity_login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText emailET, passwordET;
     ProgressBar progressBar;
@@ -58,7 +58,7 @@ public class activity_login extends AppCompatActivity {
 
         String error = validateLogin(email, password);
         if (error.length() > 0) {
-            Toast.makeText(activity_login.this, error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -74,10 +74,10 @@ public class activity_login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 showProgressBar(false);
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(activity_login.this, activity_home.class));
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(activity_login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

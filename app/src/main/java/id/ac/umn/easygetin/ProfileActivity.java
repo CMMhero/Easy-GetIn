@@ -8,17 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -36,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    Intent homeIntent = new Intent(ProfileActivity.this, activity_home.class);
+                    Intent homeIntent = new Intent(ProfileActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                     return true;
@@ -112,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
         Functions.showToast(ProfileActivity.this, "Successfully logged out");
-        startActivity(new Intent(ProfileActivity.this, activity_main.class));
+        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
         finish();
     }
 

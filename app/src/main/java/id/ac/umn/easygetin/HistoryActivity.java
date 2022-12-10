@@ -22,7 +22,7 @@ public class HistoryActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    Intent homeIntent = new Intent(HistoryActivity.this, activity_home.class);
+                    Intent homeIntent = new Intent(HistoryActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                     return true;

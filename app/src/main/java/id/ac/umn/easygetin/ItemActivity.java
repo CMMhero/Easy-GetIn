@@ -23,37 +23,37 @@ public class ItemActivity extends AppCompatActivity {
 
     private String name;
     private String location;
-    private double jamPertama;
-    private double jamBerikutnya;
+    private int jamPertama;
+    private int jamBerikutnya;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    Intent homeIntent = new Intent(ItemActivity.this, activity_home.class);
-                    startActivity(homeIntent);
-                    finish();
-                    return true;
-                case R.id.nav_profile:
-                    Intent profileIntent = new Intent(ItemActivity.this, ProfileActivity.class);
-                    startActivity(profileIntent);
-                    finish();
-                    return true;
-                case R.id.nav_order:
-                    Intent orderIntent = new Intent(ItemActivity.this, OrderActivity.class);
-                    startActivity(orderIntent);
-                    finish();
-                    return true;
-                case R.id.nav_history:
-                    Intent historyIntent = new Intent(ItemActivity.this, HistoryActivity.class);
-                    startActivity(historyIntent);
-                    finish();
-                    return true;
-            }
-            return false;
-        }
-    };
+//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            switch (item.getItemId()) {
+//                case R.id.nav_home:
+//                    Intent homeIntent = new Intent(ItemActivity.this, HomeActivity.class);
+//                    startActivity(homeIntent);
+//                    finish();
+//                    return true;
+//                case R.id.nav_profile:
+//                    Intent profileIntent = new Intent(ItemActivity.this, ProfileActivity.class);
+//                    startActivity(profileIntent);
+//                    finish();
+//                    return true;
+//                case R.id.nav_order:
+//                    Intent orderIntent = new Intent(ItemActivity.this, OrderActivity.class);
+//                    startActivity(orderIntent);
+//                    finish();
+//                    return true;
+//                case R.id.nav_history:
+//                    Intent historyIntent = new Intent(ItemActivity.this, HistoryActivity.class);
+//                    startActivity(historyIntent);
+//                    finish();
+//                    return true;
+//            }
+//            return false;
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,17 +68,17 @@ public class ItemActivity extends AppCompatActivity {
 
         name = getIntent().getExtras().getString("name");
         location = getIntent().getExtras().getString("location");
-        jamPertama = getIntent().getExtras().getDouble("jamPertama");
-        jamBerikutnya = getIntent().getExtras().getDouble("jamBerikutnya");
+        jamPertama = getIntent().getExtras().getInt("jamPertama");
+        jamBerikutnya = getIntent().getExtras().getInt("jamBerikutnya");
 
         nameTV.setText(name);
         locationTV.setText(location);
-        jamPertamaTV.setText("Jam Pertama: " + Double.toString(jamPertama));
-        jamBerikutnyaTV.setText("Jam Berikutnya: " + Double.toString(jamBerikutnya));
+        jamPertamaTV.setText("Jam Pertama: " + Functions.convertIntToCurrencyString(jamPertama));
+        jamBerikutnyaTV.setText("Jam Berikutnya: " +  Functions.convertIntToCurrencyString(jamBerikutnya));
 
-        BottomNavigationView navigation = findViewById(R.id.navBar);
-        navigation.setSelectedItemId(R.id.nav_home);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+//        BottomNavigationView navigation = findViewById(R.id.navBar);
+//        navigation.setSelectedItemId(R.id.nav_home);
+//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     public void back(View view) {

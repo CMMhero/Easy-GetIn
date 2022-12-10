@@ -1,7 +1,6 @@
 package id.ac.umn.easygetin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -10,18 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 //import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -32,10 +26,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,10 +35,8 @@ import com.google.firebase.firestore.Query;
 //import com.google.firebase.firestore.CollectionReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.Locale;
 
-public class activity_home extends AppCompatActivity implements OnMapReadyCallback {
+public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
     private RecyclerView mRecyclerView;
     private LocationAdapter mAdapter;
     private Toolbar toolbar;
@@ -63,22 +53,22 @@ public class activity_home extends AppCompatActivity implements OnMapReadyCallba
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    Intent homeIntent = new Intent(activity_home.this, activity_home.class);
+                    Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                     return true;
                 case R.id.nav_profile:
-                    Intent profileIntent = new Intent(activity_home.this, ProfileActivity.class);
+                    Intent profileIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                     startActivity(profileIntent);
                     finish();
                     return true;
                 case R.id.nav_order:
-                    Intent orderIntent = new Intent(activity_home.this, OrderActivity.class);
+                    Intent orderIntent = new Intent(HomeActivity.this, OrderActivity.class);
                     startActivity(orderIntent);
                     finish();
                     return true;
                 case R.id.nav_history:
-                    Intent historyIntent = new Intent(activity_home.this, HistoryActivity.class);
+                    Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
                     startActivity(historyIntent);
                     finish();
                     return true;
@@ -176,7 +166,7 @@ public class activity_home extends AppCompatActivity implements OnMapReadyCallba
     }
 
     private void askPermission() {
-        ActivityCompat.requestPermissions(activity_home.this, new String[]
+        ActivityCompat.requestPermissions(HomeActivity.this, new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
     }
 
@@ -186,7 +176,7 @@ public class activity_home extends AppCompatActivity implements OnMapReadyCallba
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();
             } else {
-                Functions.showToast(this, "Location Permission Requeired");
+                Functions.showToast(this, "Location Permission Required");
             }
         }
 
@@ -196,7 +186,5 @@ public class activity_home extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
-
-//        gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
 }

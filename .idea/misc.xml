@@ -4,7 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2825" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.235" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.235" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.235" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.235" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2825" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/rounded_corner.xml" value="0.235" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/drawable/rounded_dialog.xml" value="0.235" />
+        <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_edit.xml" value="0.36354166666666665" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_history.xml" value="0.22" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_home.xml" value="0.29438405797101447" />
         <entry key="..\:/CODING/Android Studio/Easy-GetIn/app/src/main/res/layout/activity_item.xml" value="0.25" />

@@ -5,17 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -72,9 +81,34 @@ public class EditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            kotakFoto.setImageBitmap(imageBitmap);
+            Uri mImageUri = data.getData();
+            saveImageToFirebase(mImageUri);
         }
+    }
+
+    private void saveImageToFirebase(Uri imageUri) {
+
+        // Get a reference to the default storage bucket
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        // Create a reference to the image file in the storage bucket
+        String fileName = UUID.randomUUID().toString() + ".jpg";
+        StorageReference imageRef = storageRef.child(fileName);
+
+        UploadTask uploadTask = imageRef.putFile(imageUri);
+
+        // Register a task completion listener
+        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()) {
+//                    Uri downloadUrl = task.getDownloadUrl();
+                    Functions.showToast(EditActivity.this, "Successfully uploaded image");
+                } else {
+                    Functions.showToast(EditActivity.this, "Unable to upload image, please try again");
+                }
+            }
+        });
     }
 }

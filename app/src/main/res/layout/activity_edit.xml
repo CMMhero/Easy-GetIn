@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -26,7 +26,9 @@
             android:ems="10"
             android:hint="Tipe Mobil"
             android:inputType="text"
-            />
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#2d2f31" />
 
         <EditText
             android:id="@+id/platNomorET"
@@ -35,7 +37,9 @@
             android:ems="10"
             android:hint="Plat Nomor"
             android:inputType="text"
-            />
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#2d2f31" />
 
         <EditText
             android:id="@+id/warnaMobilET"
@@ -44,7 +48,9 @@
             android:ems="10"
             android:hint="Warna Mobil"
             android:inputType="text"
-            />
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#2d2f31" />
 
 <!--        <ImageView-->
 <!--            android:layout_gravity="center"-->
@@ -57,6 +63,7 @@
             android:id="@+id/fotoMobilBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Ambil Foto Mobil" />
 
         <Button
@@ -64,14 +71,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="saveData"
-            android:text="Save" />
+            android:text="Save"
+            android:textColor="@color/black" />
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navbar" />
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/navBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        app:menu="@menu/bottom_navbar" />-->
 
 </LinearLayout>

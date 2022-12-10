@@ -45,7 +45,7 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_main"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".PaymentActivity"
@@ -60,21 +60,21 @@
             android:name=".OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_home"
+            android:name=".HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_register"
+            android:name=".RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_login"
+            android:name=".LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,7 +22,7 @@ public class OrderActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    Intent homeIntent = new Intent(OrderActivity.this, activity_home.class);
+                    Intent homeIntent = new Intent(OrderActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                     return true;
@@ -56,21 +54,6 @@ public class OrderActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navBar);
         navigation.setSelectedItemId(R.id.nav_order);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-//        nameTV = findViewById(R.id.Name);
-//        jamMasukTV = findViewById(R.id.JamMasuk);
-//        nomorParkirTV = findViewById(R.id.NoParkir);
-//        codeTV = findViewById(R.id.Code);
-//
-//        String timestampFormat = getIntent().getExtras().getString("timestampFormat");
-//        String name = getIntent().getExtras().getString("name");
-//        String nomorParkir = getIntent().getExtras().getString("nomorParkir");
-//        int code = getIntent().getExtras().getInt("code");
-//
-//        nameTV.setText(name);
-//        nomorParkirTV.setText("Nomor Parkir: " + nomorParkir);
-//        jamMasukTV.setText("Jam Masuk: " + timestampFormat);
-//        codeTV.setText("CODE:" + code);
 
         Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", false).orderBy("start", Query.Direction.DESCENDING);;
         FirestoreRecyclerOptions<Order> options = new FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();

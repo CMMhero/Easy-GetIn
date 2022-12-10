@@ -1,19 +1,11 @@
 package id.ac.umn.easygetin;
 
 public class Location {
-    double latitude, longitude, jamPertama, jamBerikutnya;
-    String location, mapsUrl, name, photoUrl;
+    double latitude, longitude;
+    int jamPertama, jamBerikutnya;
+    String location, name, photoUrl;
 
     public Location() { }
-//    public Location(String name, String location, String mapsUrl, String photoUrl, double latitude, double longitude, double price) {
-//        this.name = name;
-//        this.location = location;
-//        this.mapsUrl = mapsUrl;
-//        this.photoUrl = photoUrl;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//        this.price = price;
-//    }
 
     public double getLatitude() {
         return latitude;
@@ -35,7 +27,7 @@ public class Location {
         return jamPertama;
     }
 
-    public void setJamPertama(double jamPertama) {
+    public void setJamPertama(int jamPertama) {
         this.jamPertama = jamPertama;
     }
 
@@ -43,7 +35,7 @@ public class Location {
         return jamBerikutnya;
     }
 
-    public void setJamBerikutnya(double jamBerikutnya) {
+    public void setJamBerikutnya(int jamBerikutnya) {
         this.jamBerikutnya = jamBerikutnya;
     }
 
@@ -53,14 +45,6 @@ public class Location {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getMapsUrl() {
-        return mapsUrl;
-    }
-
-    public void setMapsUrl(String mapsUrl) {
-        this.mapsUrl = mapsUrl;
     }
 
     public String getName() {

@@ -17,7 +17,7 @@
         android:layout_margin="16dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        tools:context=".activity_home">
+        tools:context=".HomeActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editDataMobil"
-            android:text="Tambah data mobil"
+            android:text="Edit Data Mobil"
             android:textColor="@color/black"
             android:onClick="editData"
         />
