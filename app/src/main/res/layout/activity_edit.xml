@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Tipe Mobil"
+            android:hint="@string/tipe_mobil"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Plat Nomor"
+            android:hint="@string/plat_nomor"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Warna Mobil"
+            android:hint="@string/warna_mobil"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
@@ -63,15 +63,15 @@
             android:id="@+id/fotoMobilBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Ambil Foto Mobil" />
+            android:text="@string/edit_foto_mobil"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/saveMobilBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="saveData"
-            android:text="Save"
+            android:text="@string/save"
             android:textColor="@color/black" />
     </LinearLayout>
 

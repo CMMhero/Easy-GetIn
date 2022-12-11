@@ -2,7 +2,7 @@ package id.ac.umn.easygetin;
 
 public class Location {
     double latitude, longitude;
-    int jamPertama, jamBerikutnya;
+    long jamPertama, jamBerikutnya;
     String location, name, photoUrl;
 
     public Location() { }
@@ -27,7 +27,7 @@ public class Location {
         return jamPertama;
     }
 
-    public void setJamPertama(int jamPertama) {
+    public void setJamPertama(long jamPertama) {
         this.jamPertama = jamPertama;
     }
 
@@ -35,7 +35,7 @@ public class Location {
         return jamBerikutnya;
     }
 
-    public void setJamBerikutnya(int jamBerikutnya) {
+    public void setJamBerikutnya(long jamBerikutnya) {
         this.jamBerikutnya = jamBerikutnya;
     }
 

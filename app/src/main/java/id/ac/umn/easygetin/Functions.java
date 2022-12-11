@@ -77,7 +77,7 @@ public class Functions {
         return sb.toString();
     }
 
-    static String convertIntToCurrencyString(int number) {
+    static String convertToCurrencyString(long number) {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
         currencyFormat.setMinimumFractionDigits(0);
         String numberAsCurrency = currencyFormat.format(number);

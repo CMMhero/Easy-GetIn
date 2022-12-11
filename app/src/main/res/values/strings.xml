@@ -15,6 +15,10 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="tipe_mobil">Tipe Mobil</string>
+    <string name="plat_nomor">Plat Nomor</string>
+    <string name="warna_mobil">Warna Mobil</string>
+    <string name="save">Save</string>
+    <string name="edit_foto_mobil">Edit Foto Mobil</string>
+    <string name="map_nearby_place"><![CDATA[MAP & NEARBY PLACE]]></string>
 </resources>

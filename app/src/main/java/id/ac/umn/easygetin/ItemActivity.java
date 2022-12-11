@@ -5,16 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -23,8 +28,9 @@ public class ItemActivity extends AppCompatActivity {
 
     private String name;
     private String location;
-    private int jamPertama;
-    private int jamBerikutnya;
+    private long jamPertama;
+    private long jamBerikutnya;
+    private String photoUrl;
 
 //    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 //        @Override
@@ -55,6 +61,8 @@ public class ItemActivity extends AppCompatActivity {
 //        }
 //    };
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +75,37 @@ public class ItemActivity extends AppCompatActivity {
         jamBerikutnyaTV = findViewById(R.id.ItemJamBerikutnya);
 
         name = getIntent().getExtras().getString("name");
-        location = getIntent().getExtras().getString("location");
-        jamPertama = getIntent().getExtras().getInt("jamPertama");
-        jamBerikutnya = getIntent().getExtras().getInt("jamBerikutnya");
+
+        Query collection = FirebaseFirestore.getInstance().collection("places")
+                .document("all").collection("place").whereEqualTo("name", name);
+
+        collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                        location = (String) snapshot.get("location");
+                        locationTV.setText(location);
+                        jamPertama = (Long) snapshot.get("jamPertama");
+                        jamPertamaTV.setText("Jam Pertama: " + Functions.convertToCurrencyString(jamPertama));
+                        jamBerikutnya = (Long) snapshot.get("jamBerikutnya");
+                        jamBerikutnyaTV.setText("Jam Berikutnya: " +  Functions.convertToCurrencyString(jamBerikutnya));
+                        photoUrl = (String) snapshot.get("photoUrl");
+                        Picasso.get().load(photoUrl).into(imageTV);
+                    }
+                } else {
+                    // no locations
+                }
+            }
+        });
 
         nameTV.setText(name);
-        locationTV.setText(location);
-        jamPertamaTV.setText("Jam Pertama: " + Functions.convertIntToCurrencyString(jamPertama));
-        jamBerikutnyaTV.setText("Jam Berikutnya: " +  Functions.convertIntToCurrencyString(jamBerikutnya));
-
+//        locationTV.setText(location);
+//        jamPertamaTV.setText("Jam Pertama: " + Functions.convertToCurrencyString(jamPertama));
+//        jamBerikutnyaTV.setText("Jam Berikutnya: " +  Functions.convertToCurrencyString(jamBerikutnya));
+//        Picasso.get()
+//                .load(photoUrl)
+//                .into(imageTV);
 //        BottomNavigationView navigation = findViewById(R.id.navBar);
 //        navigation.setSelectedItemId(R.id.nav_home);
 //        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

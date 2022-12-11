@@ -96,14 +96,19 @@ public class EditActivity extends AppCompatActivity {
         String fileName = UUID.randomUUID().toString() + ".jpg";
         StorageReference imageRef = storageRef.child(fileName);
 
-        UploadTask uploadTask = imageRef.putFile(imageUri);
+//        UploadTask uploadTask = imageRef.putFile(imageUri);
 
-        // Register a task completion listener
-        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        imageRef.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
-//                    Uri downloadUrl = task.getDownloadUrl();
+                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri downloadUrl = uri;
+//                            Functions.showToast(EditActivity.this, downloadUrl.toString());
+                        }
+                    });
                     Functions.showToast(EditActivity.this, "Successfully uploaded image");
                 } else {
                     Functions.showToast(EditActivity.this, "Unable to upload image, please try again");

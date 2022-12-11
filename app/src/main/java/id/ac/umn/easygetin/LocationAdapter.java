@@ -34,9 +34,9 @@ public class LocationAdapter extends FirestoreRecyclerAdapter<Location, Location
         holder.itemView.setOnClickListener((view -> {
             Intent ItemItent = new Intent(context, ItemActivity.class);
             ItemItent.putExtra("name", model.name);
-            ItemItent.putExtra("location", model.location);
-            ItemItent.putExtra("jamPertama", model.jamPertama);
-            ItemItent.putExtra("jamBerikutnya", model.jamBerikutnya);
+//            ItemItent.putExtra("location", model.location);
+//            ItemItent.putExtra("jamPertama", model.jamPertama);
+//            ItemItent.putExtra("jamBerikutnya", model.jamBerikutnya);
             view.getContext().startActivity(ItemItent);
         }));
     }

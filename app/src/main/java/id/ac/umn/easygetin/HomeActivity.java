@@ -1,6 +1,7 @@
 package id.ac.umn.easygetin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -9,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -26,12 +29,25 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 //import com.google.firebase.firestore.CollectionReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -40,9 +56,10 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     private RecyclerView mRecyclerView;
     private LocationAdapter mAdapter;
     private Toolbar toolbar;
+    List<Location> locationList = new ArrayList<>();
 
     GoogleMap gMap;
-    LatLng latlng;
+    LatLng globalLatLng;
     FrameLayout maps;
     FusedLocationProviderClient fusedLocationProviderClient;
     private final static int REQUEST_CODE = 100;
@@ -85,6 +102,23 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         BottomNavigationView navigation = findViewById(R.id.navBar);
         navigation.setSelectedItemId(R.id.nav_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        CollectionReference collection = FirebaseFirestore.getInstance().collection("places").document("all").collection("place");
+
+        collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                        Location location = snapshot.toObject(Location.class);
+                        locationList.add(location);
+                    }
+                    attachMarkerOnMap();
+                } else {
+                    // no locations
+                }
+            }
+        });
 
         maps = findViewById(R.id.maps);
 
@@ -152,9 +186,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                             @Override
                             public void onMapReady(@NonNull GoogleMap googleMap) {
                                 gMap = googleMap;
-                                latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                                googleMap.addMarker(new MarkerOptions().position(latlng).title("Current Location"));
-                                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
+                                globalLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                                googleMap.addMarker(new MarkerOptions().position(globalLatLng).title("Current Location"));
+                                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(globalLatLng, 15));
                             }
                         });
                     }
@@ -183,8 +217,35 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    private void attachMarkerOnMap() {
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                gMap=googleMap;
+                for (Location location : locationList) {
+                    LatLng latLngLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    MarkerOptions option = new MarkerOptions().position(latLngLocation)
+                            .title(location.getName());
+                    gMap.addMarker(option);
+                }
+            }
+        });
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
+
+        gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            public void onInfoWindowClick(final Marker marker) {
+                LatLng position = marker.getPosition();
+                if (position.equals(globalLatLng)) {
+                    return;
+                }
+                Intent ItemItent = new Intent(HomeActivity.this, ItemActivity.class);
+                ItemItent.putExtra("name", marker.getTitle());
+                startActivity(ItemItent);
+            }
+        });
     }
 }
