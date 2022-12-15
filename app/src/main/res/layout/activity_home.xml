@@ -25,6 +25,7 @@
                 android:layout_weight="1"
                 android:textSize="16sp"
                 android:text="@string/map_nearby_place"
+                android:layout_marginBottom="4dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
 
@@ -69,47 +70,27 @@
             android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:context=".HomeActivity">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/yellow"
-                app:cardCornerRadius="16dp"
-                app:contentPadding="12dp">
+                android:textSize="16sp"
+                android:text="VEHICLE DATA"
+                android:layout_marginBottom="4dp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    tools:context=".HomeActivity">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="80dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/main_logo_vector" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:textSize="20sp"
-                    android:layout_margin="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:text="Data Mobil" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="id.ac.umn.easygetin.DataMobilFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,13 +98,23 @@
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:context=".HomeActivity" >
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="LOCATIONS"
+                            android:layout_marginBottom="4dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/LocationsRecyclerView"

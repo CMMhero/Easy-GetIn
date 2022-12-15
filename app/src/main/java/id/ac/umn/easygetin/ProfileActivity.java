@@ -111,9 +111,6 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
 
-    public void save(View view) {
-    }
-
     public void editData(View view) {
         Intent editIntent = new Intent(ProfileActivity.this, EditActivity.class);
         startActivity(editIntent);

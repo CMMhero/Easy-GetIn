@@ -39,15 +39,17 @@
                 android:textSize="20sp"
                 android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/emailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/email" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/emailTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="@string/email" />
+
 
 <!--        <ImageView-->
 <!--            android:id="@+id/mobilImageView"-->
@@ -59,22 +61,33 @@
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:id="@+id/jenisMobil"/>-->
-        <Button
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:name="id.ac.umn.easygetin.DataMobilFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editDataMobil"
-            android:text="Edit Data Mobil"
-            android:textColor="@color/black"
-            android:onClick="editData"
-        />
+            android:layout_height="wrap_content" />
+
+<!--        <Button-->
+<!--            android:layout_width="180dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/editDataMobil"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="Edit Data Mobil"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:onClick="editData"-->
+<!--        />-->
 
         <Button
             android:id="@+id/logout"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:onClick="logout"
+            android:layout_gravity="center"
             android:textColor="@color/black"
             android:text="Logout" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

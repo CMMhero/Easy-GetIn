@@ -19,6 +19,8 @@
     <string name="plat_nomor">Plat Nomor</string>
     <string name="warna_mobil">Warna Mobil</string>
     <string name="save">Save</string>
-    <string name="edit_foto_mobil">Edit Foto Mobil</string>
+    <string name="foto_mobil">Foto Mobil</string>
     <string name="map_nearby_place"><![CDATA[MAP & NEARBY PLACE]]></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

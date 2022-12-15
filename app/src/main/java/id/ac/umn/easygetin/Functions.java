@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.SecureRandom;
@@ -49,10 +50,10 @@ public class Functions {
                 .document(user.getUid()).collection("my_order");
     }
 
-    static CollectionReference getCollectionReferenceForVehicle(){
+    static DocumentReference getDocumentReferenceForVehicle(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return FirebaseFirestore.getInstance().collection("vehicle")
-                .document(user.getUid()).collection("my_vehicle");
+                .document(user.getUid());
     }
 
     static String convertTimeToString(Timestamp timestamp) {
