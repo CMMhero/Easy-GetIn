@@ -64,7 +64,7 @@ public class OrderActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         NoOrderTV = findViewById(R.id.NoOrderTV);
-        CollectionReference collection = Functions.getCollectionReferenceForOrders();
+        Query collection = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", false);
 
         collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
