@@ -25,6 +25,7 @@
             android:id="@+id/NoOrderTV"
             android:gravity="center"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:visibility="gone"
             />
 

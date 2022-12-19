@@ -77,8 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     showProgressBar(false);
+                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -89,8 +89,8 @@ public class LoginActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             confirmButton.setVisibility(View.GONE);
         } else {
-            progressBar.setVisibility(View.VISIBLE);
-            confirmButton.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            confirmButton.setVisibility(View.VISIBLE);
         }
     }
 

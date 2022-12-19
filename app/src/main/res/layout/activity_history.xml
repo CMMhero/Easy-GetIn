@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="No History"
                 android:id="@+id/NoHistoryTV"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:visibility="gone"

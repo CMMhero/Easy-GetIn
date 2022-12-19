@@ -110,8 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             confirmButton.setVisibility(View.GONE);
         } else {
-            progressBar.setVisibility(View.VISIBLE);
-            confirmButton.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            confirmButton.setVisibility(View.VISIBLE);
         }
     }
 

@@ -36,6 +36,7 @@ public class EditActivity extends AppCompatActivity {
     Button fotoBtn;
     Button saveBtn;
 
+    boolean samePhoto;
     ProgressBar progressBar;
 
     Uri globalImageUri;
@@ -80,6 +81,7 @@ public class EditActivity extends AppCompatActivity {
                         platNomorMobilET.setText(document.get("platNomor").toString());
 
                         if (document.get("photo") != null) {
+                            samePhoto = true;
                             globalImageUri = Uri.parse(document.get("photo").toString());
                             downloadUrl = Uri.parse(document.get("photo").toString());
                             Picasso.get().load(globalImageUri).into(kotakFoto);
@@ -104,12 +106,15 @@ public class EditActivity extends AppCompatActivity {
 
         if (tipeMobil.isEmpty() || warnaMobil.isEmpty() || platNomorMobil.isEmpty() || globalImageUri == null) {
             Functions.showToast(EditActivity.this, "Semua data harus diisi");
+            showProgressBar(false);
             return;
         }
 
-        if (globalImageUri.toString().equals(downloadUrl.toString())) {
+        if (!samePhoto) {
+            saveImageToFirebase(globalImageUri);
+        } else {
             Vehicle vehicle = new Vehicle(platNomorMobil, warnaMobil, tipeMobil);
-            vehicle.setPhoto(downloadUrl.toString());
+            vehicle.setPhoto(globalImageUri.toString());
 
             docRef.set(vehicle).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -126,9 +131,8 @@ public class EditActivity extends AppCompatActivity {
                     }
                 }
             });
-        } else {
-            saveImageToFirebase(globalImageUri);
         }
+
 
     }
 
@@ -138,6 +142,7 @@ public class EditActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             globalImageUri = data.getData();
             kotakFoto.setImageURI(globalImageUri);
+            samePhoto = false;
         }
     }
 
@@ -146,8 +151,8 @@ public class EditActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             saveBtn.setVisibility(View.GONE);
         } else {
-            progressBar.setVisibility(View.VISIBLE);
-            saveBtn.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            saveBtn.setVisibility(View.VISIBLE);
         }
     }
 

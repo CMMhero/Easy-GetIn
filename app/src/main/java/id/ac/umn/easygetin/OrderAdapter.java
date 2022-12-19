@@ -134,6 +134,7 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<Order, OrderAdapter.O
 
             selesaiButton = itemView.findViewById(R.id.SelesaiOrder);
             cancelButton = itemView.findViewById(R.id.CancelOrder);
+
         }
     }
 }

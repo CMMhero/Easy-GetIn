@@ -8,14 +8,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class OrderActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private OrderAdapter mAdapter;
+    TextView NoOrderTV;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -54,6 +62,21 @@ public class OrderActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navBar);
         navigation.setSelectedItemId(R.id.nav_order);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        NoOrderTV = findViewById(R.id.NoOrderTV);
+        CollectionReference collection = Functions.getCollectionReferenceForOrders();
+
+        collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    NoOrderTV.setVisibility(View.GONE);
+                } else {
+                    NoOrderTV.setVisibility(View.VISIBLE);
+                    // no locations
+                }
+            }
+        });
 
         Query query = Functions.getCollectionReferenceForOrders().whereEqualTo("finished", false).orderBy("start", Query.Direction.DESCENDING);;
         FirestoreRecyclerOptions<Order> options = new FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();
